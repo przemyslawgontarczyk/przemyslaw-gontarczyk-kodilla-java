@@ -20,7 +20,7 @@ public class CollectionTestSuite {
     public void testOddNumbersExterminatorEmptyList(){
         //Given
         System.out.println("Empty List");
-        OddNumbersExterminator EmpytList = new OddNumbersExterminator();
+        OddNumbersExterminator EmpytList = new OddNumbersExterminator();//obiekt OddNumbersExterminator powinien byc na poziomie klasy, a kontruktor w metodzie before
         ArrayList<Integer> input = new ArrayList<>();
         //When
         List <Integer> output = EmpytList.exterminate(input);
@@ -32,7 +32,8 @@ public class CollectionTestSuite {
     public void testOddNumbersExterminatorNormalList(){
         //Given
         System.out.println("Normal List, sorting for even and odd numbers");
-        OddNumbersExterminator newList = new OddNumbersExterminator();
+        OddNumbersExterminator newList = new OddNumbersExterminator();//obiekt OddNumbersExterminator powinien byc na poziomie klasy, a kontruktor w metodzie before
+        List<Integer> expectedOutput= Arrays.asList(2,4);
         ArrayList<Integer> input = new ArrayList<>();
         input.add(1);
         input.add(2);
@@ -41,7 +42,8 @@ public class CollectionTestSuite {
         //When
         List <Integer> output = newList.exterminate(input);
         //Then
-        Assert.assertEquals(2, output.size());
+        Assert.assertTrue(expectedOutput.equals(output));//assertEquals nie działa za dobrze na listach
+        //trzeba sprawdzać wartości, a nie tylko rozmiary
     }
 
 }
