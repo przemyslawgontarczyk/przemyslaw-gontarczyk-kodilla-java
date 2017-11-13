@@ -3,7 +3,7 @@ package com.kodilla.testing.collection;
 
 import java.util.ArrayList;
 
-public class OddNumbersExterminator {//uzywaj wbudowane narzedzia do formatowania ctrl-alt-L
+public class OddNumbersExterminator {
 
     ArrayList<Integer> exterminate(ArrayList<Integer> numbers) {
 
