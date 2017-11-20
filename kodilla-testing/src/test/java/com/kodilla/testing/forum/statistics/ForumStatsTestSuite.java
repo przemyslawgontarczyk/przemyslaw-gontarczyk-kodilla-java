@@ -15,13 +15,19 @@ public class ForumStatsTestSuite {
 
     ForumStats forumStats;
     Statistics statisticsMock;
-    int postsCount = 0;
+    int postsCount ;
     int commentsCount;
+    double averagePostsPerUser;
+    double averageCommentsPerUser;
+    double averageCommentsPerPost;
+    List<String>usersNames = Arrays.asList("John","Dingo","Sam");
+
 
     @Before
     public void before() {
         forumStats = new ForumStats();
         statisticsMock = mock(Statistics.class);
+
     }
 
     @Test
@@ -30,14 +36,22 @@ public class ForumStatsTestSuite {
         //Given
         postsCount = 0;
         commentsCount = 0;
+        double resultOfAveragePostsPerUser = postsCount/usersNames.size();
+        double resultOfAverageCommentsPerUser = commentsCount/usersNames.size();
+        double resultOfAverageCommentsPerPost = commentsCount/postsCount;
         when(statisticsMock.postsCount()).thenReturn(postsCount);
+        when(statisticsMock.commentsCount()).thenReturn(commentsCount);
+        when(statisticsMock.usersNames()).thenReturn(usersNames);
+
 
         //When
         forumStats.calculateAdvStatistics(statisticsMock);
-        postsCount = forumStats.getPostsCount();
+        Double newAveragePostsPerUser = forumStats.getAveragePostsPerUser();
+        Double averageCommentsPerPost = forumStats.getAverageCommentsPerPost();
+        Double averageCommentsPerUser = forumStats.getAverageCommentsPerUser();
 
         //Then
-        Assert.assertEquals(0, postsCount);
+        Assert.assertEquals(new Double(0),newAveragePostsPerUser);
     }
 
     @Test
