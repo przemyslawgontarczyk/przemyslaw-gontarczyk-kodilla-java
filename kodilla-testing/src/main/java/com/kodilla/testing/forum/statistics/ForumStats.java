@@ -9,6 +9,34 @@ public class ForumStats {
     double averageCommentsPerUser;
     double averageCommentsPerPost;
 
+
+    public void calculateAdvStatistics(Statistics statistics) {
+        usersCount = statistics.usersNames().size();
+        postsCount = statistics.postsCount();
+        commentsCount = statistics.commentsCount();
+        if (usersCount > 0 ) {
+            averagePostsPerUser = (double)postsCount / usersCount;
+        }
+        if (usersCount > 0) {
+            averageCommentsPerUser = ((double)commentsCount / usersCount);
+        }
+        if (postsCount > 0) {
+            averageCommentsPerPost = ((double)commentsCount / postsCount);
+        }
+    }
+
+    @Override
+    public String toString() {
+        return "Forum Stats {" +
+                "Users =" + usersCount +
+                ", Posts =" + postsCount +
+                ", Comments =" + commentsCount +
+                ", AveragePostsPerUser=" + averagePostsPerUser +
+                ", AverageCommentsPerUser=" + averageCommentsPerUser +
+                ", AverageCommentsPerPost=" + averageCommentsPerPost +
+                '}';
+    }
+
     public int getUsersCount() {
         return usersCount;
     }
@@ -31,33 +59,6 @@ public class ForumStats {
 
     public double getAverageCommentsPerPost() {
         return averageCommentsPerPost;
-    }
-
-    public void calculateAdvStatistics(Statistics statistics) {
-        usersCount = statistics.usersNames().size();
-        postsCount = statistics.postsCount();
-        commentsCount = statistics.commentsCount();
-        if (usersCount > 0) {
-            averagePostsPerUser = postsCount / usersCount;
-        }
-        if (usersCount > 0) {
-            averageCommentsPerPost = commentsCount / usersCount;
-        }
-        if (postsCount > 0) {
-            averageCommentsPerPost = commentsCount / postsCount;
-        }
-    }
-
-    @Override
-    public String toString() {
-        return "Forum Stats {" +
-                "Users =" + usersCount +
-                ", Posts =" + postsCount +
-                ", Comments =" + commentsCount +
-                ", AveragePostsPerUser=" + averagePostsPerUser +
-                ", AverageCommentsPerUser=" + averageCommentsPerUser +
-                ", AverageCommentsPerPost=" + averageCommentsPerPost +
-                '}';
     }
 
     public void ShowStatistics() {
