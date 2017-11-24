@@ -23,7 +23,10 @@ public class StreamMain {
                 .filter(f -> Period.between(f.getBornDate(), currentDate).getYears() >= 20)
                 .filter(f -> f.getPostsPublicated() >= 1)
                 .collect(Collectors.toMap(ForumUser::getUserId, f -> f));
-        System.out.println(theResultMapofUsers);
+        theResultMapofUsers.entrySet().stream()
+        .forEach(System.out::println);
+
+
 
         /*BookDirectory theBookDirectory = new BookDirectory();
         String theResultStringOfBooks = theBookDirectory.getList().stream()
