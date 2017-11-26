@@ -3,6 +3,7 @@
 /out/
 out/
 /kodilla-testing/out/
+/kodilla-stream/out/
 !gradle/wrapper/gradle-wrapper.jar
 
 ### STS ###
