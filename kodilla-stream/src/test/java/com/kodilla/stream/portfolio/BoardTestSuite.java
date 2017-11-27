@@ -3,6 +3,7 @@ package com.kodilla.stream.portfolio;
 import org.junit.Assert;
 import org.junit.Test;
 import java.time.LocalDate;
+import java.time.Period;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -147,18 +148,16 @@ public class BoardTestSuite {
         //When
         List<TaskList> inProgressTasks = new ArrayList<>();
         inProgressTasks.add(new TaskList("In progress"));
-        long numberDaysOfTask = project.getTaskLists().stream()
+
+        double averageofDaysForTaskInProgress = project.getTaskLists().stream()
                 .filter((inProgressTasks::contains))
                 .flatMap(tl -> tl.getTasks().stream())
-                .map(t -> t.getCreated())
-                .count();
-        long sumDaysOfTask = project.getTaskLists().stream()
-                .filter((inProgressTasks::contains))
-                .flatMap(tl -> tl.getTasks().stream())
-                .map(t ->t.getCreated().
-                .count();
+                .mapToInt(t -> Period.between(t.getCreated(),LocalDate.now()).getDays())
+                .average().getAsDouble();
+        System.out.println(averageofDaysForTaskInProgress);
+
 
         //Then
-        Assert.assertEquals(3,numberDaysOfTask);
+        Assert.assertEquals(new Double(10),averageofDaysForTaskInProgress,0);
     }
 }
