@@ -20,7 +20,7 @@ public class FileReader {
             throw new FileReaderException();
 
         }finally {
-            System.out.println("Always show mesage");
+            System.out.println("Always show message");
         }
 
     }
