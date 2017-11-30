@@ -17,25 +17,24 @@ public class FlightFinder {
         airPortCheck.put("Porto", true);
         airPortCheck.put("Krakow", true);
         airPortCheck.put("Paris", true);
-        System.out.println(flight.arrivalAirport +flight.getDepartureAirport());
-        for (Map.Entry<String, Boolean> entry : airPortCheck.entrySet()) {
-            if (entry.getKey().contains(flight.getDepartureAirport())&&entry.getValue()==Boolean.TRUE) {
-                System.out.println("Found flight possibility for searched criteria");
-            } throw new RouteNotFoundException("");
 
-        }
 
+                if (airPortCheck.containsKey(flight.getDepartureAirport())&&airPortCheck.get(flight.getDepartureAirport()))
+                   {System.out.println("Departure Airport is available");
+                   } else throw new RouteNotFoundException("Wrong departure airport name, or airport is closed");
+
+                if (airPortCheck.get(flight.getArrivalAirport())&&airPortCheck.get(flight.getArrivalAirport()))
+                 {System.out.println("Arrival Airport is available");
+                 } else throw new RouteNotFoundException("Wrong arrival airport name, or airport is closed");
     }
-
-
     public static void main(String args[]) {
-        Flight flight1 = new Flight("London", "Warsaw");
+        Flight flight1 = new Flight("Porto", "Krakow");
 
         try {
             FlightFinder test1 = new FlightFinder();
             test1.flightFinder(flight1);
         } catch (RouteNotFoundException e) {
-            System.out.print("Can't find route");
+            System.out.print("Problem occurred: " +e.getMessage());
         }
 
 
