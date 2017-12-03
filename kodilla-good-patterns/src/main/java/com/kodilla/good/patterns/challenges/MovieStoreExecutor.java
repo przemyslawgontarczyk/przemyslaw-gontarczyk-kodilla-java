@@ -2,7 +2,7 @@ package com.kodilla.good.patterns.challenges;
 
 import java.util.stream.Collectors;
 
-public class MovieStoreVideoList {
+public class MovieStoreExecutor {
 
     public static void main(String args[]) {
 
