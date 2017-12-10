@@ -25,4 +25,9 @@ public class Airport {
     public int hashCode() {
         return airportName != null ? airportName.hashCode() : 0;
     }
+
+    @Override
+    public String toString() {
+        return airportName;
+    }
 }

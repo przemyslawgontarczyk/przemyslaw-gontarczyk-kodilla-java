@@ -35,4 +35,10 @@ public class FlightTo {
         result = 31 * result + (departureAirport != null ? departureAirport.hashCode() : 0);
         return result;
     }
+
+    @Override
+    public String toString() {
+        return "from " + homeAirport +
+                " ,to " + departureAirport;
+    }
 }
