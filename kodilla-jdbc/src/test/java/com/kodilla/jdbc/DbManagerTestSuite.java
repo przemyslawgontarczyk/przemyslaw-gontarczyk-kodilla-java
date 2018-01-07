@@ -46,7 +46,7 @@ public class DbManagerTestSuite {
         DbManager dbManager = DbManager.getInstance();
 
         //When
-        String sqlQuery = "SELECT U.FIRSTNAME, U.LASTNAME FROM USERS U, POSTS P WHERE U.ID = P.USER_ID GROUP BY U.ID HAVING COUNT(*) >=2;";
+        String sqlQuery = "SELECT U.FIRSTNAME, U.LASTNAME , COUNT(*) AS POSTS FROM USERS U, POSTS P WHERE U.ID = P.USER_ID GROUP BY U.ID HAVING COUNT(*) >=2;";
         Statement statement = dbManager.getConnection().createStatement();
         ResultSet rs = statement.executeQuery(sqlQuery);
 
@@ -54,7 +54,8 @@ public class DbManagerTestSuite {
         int counter = 0;
         while (rs.next()) {
             System.out.println(rs.getString("FIRSTNAME") + ", " +
-                    rs.getString("LASTNAME"));
+                    rs.getString("LASTNAME") +", NUMBER OF POSTS: " +
+                    rs.getInt("POSTS"));
             counter++;
         }
         rs.close();
