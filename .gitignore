@@ -10,6 +10,8 @@ out/
 /kodilla-spring-intro/build/
 /kodilla-spring-web/out/
 /kodilla-spring-web/build/
+/kodilla-jdbc/out/
+/kodilla-jdbc/build/
 !gradle/wrapper/gradle-wrapper.jar
 
 ### STS ###
