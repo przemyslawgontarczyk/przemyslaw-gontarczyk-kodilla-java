@@ -13,17 +13,15 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.transaction.Transactional;
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-@Transactional
+//@Transactional
 public class InvoiceDaoTestSuite {
     @Autowired
     InvoiceDao invoiceDao;
-    @Autowired
-    ProductDao productDao;
-    @Autowired
-    ItemDao itemDao;
 
     @Test
     public void testInvoiceDaoSave() {
@@ -38,20 +36,25 @@ public class InvoiceDaoTestSuite {
 
         Invoice invoice = new Invoice("0001");
 
+        item1.setInvoice(invoice);
+        item2.setInvoice(invoice);
+        item3.setInvoice(invoice);
+
         //When
         invoice.getItems().add(item1);
         invoice.getItems().add(item2);
         invoice.getItems().add(item3);
         invoiceDao.save(invoice);
 
+
         //Then
         Assert.assertNotEquals(0, invoice.getId());
         Assert.assertEquals(new BigDecimal(20), invoice.getItems().get(2).getPrice());
         //CleanUp
-//        try {
-//            invoiceDao.delete(invoice);
-//        } catch (Exception e) {
-//            e.getMessage();
-//        }
+        try {
+            invoiceDao.delete(invoice);
+        } catch (Exception e) {
+            e.getMessage();
+        }
     }
 }
