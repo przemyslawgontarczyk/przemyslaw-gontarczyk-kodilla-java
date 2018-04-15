@@ -6,14 +6,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 @NamedNativeQuery(
-        name = "Company.retriveSpecifiedCompany",
-        query = "SELECT * FROM COMPANIES WHERE COMPANY_NAME LIKE 'Gre%'",
+        name = "Company.retrieveCompaniesWithNamesBeginWith",
+        query = "SELECT * FROM companies WHERE MID(company_name, 1, 3) = :FIRSTTHREECHARACTERS",
         resultClass = Company.class
 )
-
+@NamedQuery(
+        name = "Company.retrieveCompaniesWithNamesContaining",
+        query = "FROM Company WHERE name like concat('%',:NAME_PART,'%')"
+)
 @Entity
-@Table(name = "COMPANIES")
+@Table(name="COMPANIES")
 public class Company {
+
     private int id;
     private String name;
     private List<Employee> employees = new ArrayList<>();
@@ -39,6 +43,11 @@ public class Company {
         return name;
     }
 
+    @ManyToMany(cascade = CascadeType.ALL, mappedBy = "companies")
+    public List<Employee> getEmployees() {
+        return employees;
+    }
+
     private void setId(int id) {
         this.id = id;
     }
@@ -47,12 +56,7 @@ public class Company {
         this.name = name;
     }
 
-    @ManyToMany(cascade = CascadeType.ALL, mappedBy = "companies")
-    public List<Employee> getEmployees() {
-        return employees;
-    }
-
-    public void setEmployees(List<Employee> employees) {
+    private void setEmployees(List<Employee> employees) {
         this.employees = employees;
     }
 }

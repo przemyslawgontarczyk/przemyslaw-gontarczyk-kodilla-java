@@ -48,8 +48,8 @@ public class CompanyDaoTestSuite {
         int dataMaestersId = dataMaesters.getId();
         companyDao.save(greyMatter);
         int greyMatterId = greyMatter.getId();
-        List<Employee>findByLastname = employeeDao.getPersonByLastname("Kovalsky");
-        List<Company>findCompany = companyDao.retriveSpecifiedCompany();
+        List<Employee>findByLastname = employeeDao.retrieveEmployeesWithLastname("Kovalsky");
+        List<Company>findCompany = companyDao.retrieveCompaniesWithNamesBeginWith("Gre");
 
         //Then
         Assert.assertNotEquals(0, softwareMachineId);
